@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace Assets.Scripts.Player
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Player : MonoBehaviour
     {
-        
-    }
+        public void Initialize()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
     }
 }

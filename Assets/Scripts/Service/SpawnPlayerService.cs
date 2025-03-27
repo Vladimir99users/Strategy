@@ -1,16 +1,23 @@
 using UnityEngine;
 
-public class SpawnPlayerService : MonoBehaviour
+namespace Assets.Scripts.Service
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class SpawnPlayerService : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private Player.Player playerPrefabs;
+        [SerializeField] private Transform transformPoint;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private Player.Player player;
+        public Player.Player Player => player;
+        public void Initialize()
+        {
+            SpawnPlayer();
+        }
+
+        private void SpawnPlayer()
+        {
+            player = Instantiate(playerPrefabs, transformPoint.position, Quaternion.identity);
+            player.Initialize();
+        }
     }
 }

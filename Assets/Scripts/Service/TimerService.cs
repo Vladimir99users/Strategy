@@ -1,16 +1,40 @@
+using System.Collections;
 using UnityEngine;
 
-public class TimerService : MonoBehaviour
+namespace Assets.Scripts.Service
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class TimerService : MonoBehaviour, ISecondElapsedNotifier
     {
-        
+        public event System.Action OnSecondEnd;
+        private Coroutine timerCoroutine;
+        internal void Initialize()
+        {
+            if (timerCoroutine is not null)
+                StopCoroutine(timerCoroutine);
+
+            timerCoroutine = StartCoroutine(TimerStart());
+        }
+
+        private IEnumerator TimerStart()
+        {
+            var time = 0f;
+            while (true)
+            {
+                time += Time.deltaTime;
+                if (time > 1f)
+                {
+                    time = 0;
+                    OnSecondEnd?.Invoke();
+                    Debug.Log("Second is end");
+                }
+
+                yield return null;
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public interface ISecondElapsedNotifier
     {
-        
+        public event System.Action OnSecondEnd;
     }
 }
