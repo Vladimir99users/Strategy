@@ -1,16 +1,44 @@
+using Assets.Scripts.Service;
 using UnityEngine;
 
-public class ProductionBuild : MonoBehaviour
+namespace Assets.Scripts.Building
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class ProductionBuild : Building, IProduce<Item>
     {
-        
-    }
+        [SerializeField] private ItemConfiguration _itemConfiguration;
+        [SerializeField] private ProductionBuildUi productionBuildUi;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private int timeStep = 0;
+        private Item item;
+        public void Initialize(ISecondElapsedNotifier secondElapsedNotifier)
+        {
+            productionBuildUi.Initialize(_itemConfiguration.TimeToGeneration, _itemConfiguration.Sprite, _itemConfiguration.Item.Type);
+            secondElapsedNotifier.OnSecondEnd += GenerateItem;
+            item = new Item();
+            item.Type = _itemConfiguration.Item.Type;
+            item.Amount = _itemConfiguration.Item.Amount;
+        }
+
+        private void GenerateItem()
+        {
+            timeStep += 1;
+            if (timeStep == _itemConfiguration.TimeToGeneration)
+            {
+                item.Amount += 1;
+                timeStep = 0;
+            }
+            productionBuildUi.Refresh(timeStep, item.Amount);
+        }
+        public Item GetItem()
+        {
+            Item sendItem = new Item
+            {
+                Amount = item.Amount,
+                Type = item.Type,
+            };
+            item.Amount = 0;
+            productionBuildUi.Refresh(timeStep, item.Amount);
+            return sendItem;
+        }
     }
 }

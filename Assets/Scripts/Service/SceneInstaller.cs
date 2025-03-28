@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Service
@@ -7,12 +8,14 @@ namespace Assets.Scripts.Service
         [SerializeField] private TimerService timerService;
         [SerializeField] private SpawnPlayerService spawnPlayerService;
         [SerializeField] private InputService inputService;
+        [SerializeField] private CameraService cameraService;
+
+        [SerializeField] private List<Building.ProductionBuild> buildings;
         private void Awake()
             => OnAwake();
         protected virtual void OnAwake()
         {
             timerService.Initialize();
-            spawnPlayerService.Initialize();
             inputService.Initialize();
         }
 
@@ -21,7 +24,9 @@ namespace Assets.Scripts.Service
 
         protected virtual void OnStart()
         {
-
+            spawnPlayerService.Initialize(inputService);
+            buildings.ForEach(x => x.Initialize(timerService));
+            cameraService.Initialize(inputService);
         }
 
     }

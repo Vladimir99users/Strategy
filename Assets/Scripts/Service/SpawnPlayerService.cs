@@ -9,15 +9,15 @@ namespace Assets.Scripts.Service
 
         private Player.Player player;
         public Player.Player Player => player;
-        public void Initialize()
+        public void Initialize(IPlayerController controller)
         {
-            SpawnPlayer();
+            SpawnPlayer(controller);
         }
 
-        private void SpawnPlayer()
+        private void SpawnPlayer(IPlayerController controller)
         {
             player = Instantiate(playerPrefabs, transformPoint.position, Quaternion.identity);
-            player.Initialize();
+            player.Initialize(controller);
         }
     }
 }

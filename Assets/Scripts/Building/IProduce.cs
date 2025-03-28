@@ -1,16 +1,7 @@
-using UnityEngine;
-
-public class IProduce : MonoBehaviour
+namespace Assets.Scripts.Building
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public interface IProduce<T> where T : Item
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public T GetItem();
     }
 }

@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class Building : MonoBehaviour
+namespace Assets.Scripts.Building
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public abstract class Building : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [SerializeField] private Transform pointToGrab;
+        public Transform PointToGrab => pointToGrab;
     }
 }
