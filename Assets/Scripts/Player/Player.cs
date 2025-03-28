@@ -1,4 +1,5 @@
 using Assets.Scripts.Building;
+using Assets.Scripts.Building.Item;
 using Assets.Scripts.Service;
 using System.Collections;
 using UnityEngine;
@@ -7,13 +8,14 @@ using UnityEngine.AI;
 namespace Assets.Scripts.Player
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IDataCollection
     {
         [SerializeField] private Animator animator;
         private NavMeshAgent agent;
         private IPlayerController controller;
         private Coroutine coroutine;
         private Building.Building targetBuilding;
+        public event System.Action<Item> OnCollectItem;
         public void Initialize(IPlayerController controller)
         {
             this.controller = controller;
@@ -69,8 +71,10 @@ namespace Assets.Scripts.Player
             {
                 var item = produce.GetItem();
                 Debug.Log($"Collect data = {item.Type} = {item.Amount}");
+                OnCollectItem?.Invoke(item);
             }
         }
+
 
     }
 }

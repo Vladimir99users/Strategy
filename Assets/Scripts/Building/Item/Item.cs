@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Building
+namespace Assets.Scripts.Building.Item
 {
     [System.Serializable]
     public class Item

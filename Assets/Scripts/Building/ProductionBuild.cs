@@ -1,20 +1,21 @@
+using Assets.Scripts.Building.Item;
 using Assets.Scripts.Service;
 using UnityEngine;
 
 namespace Assets.Scripts.Building
 {
-    public class ProductionBuild : Building, IProduce<Item>
+    public class ProductionBuild : Building, IProduce<Item.Item>
     {
         [SerializeField] private ItemConfiguration _itemConfiguration;
         [SerializeField] private ProductionBuildUi productionBuildUi;
 
         private int timeStep = 0;
-        private Item item;
+        private Item.Item item;
         public void Initialize(ISecondElapsedNotifier secondElapsedNotifier)
         {
             productionBuildUi.Initialize(_itemConfiguration.TimeToGeneration, _itemConfiguration.Sprite, _itemConfiguration.Item.Type);
             secondElapsedNotifier.OnSecondEnd += GenerateItem;
-            item = new Item();
+            item = new Item.Item();
             item.Type = _itemConfiguration.Item.Type;
             item.Amount = _itemConfiguration.Item.Amount;
         }
@@ -29,9 +30,9 @@ namespace Assets.Scripts.Building
             }
             productionBuildUi.Refresh(timeStep, item.Amount);
         }
-        public Item GetItem()
+        public Item.Item GetItem()
         {
-            Item sendItem = new Item
+            Item.Item sendItem = new Item.Item
             {
                 Amount = item.Amount,
                 Type = item.Type,

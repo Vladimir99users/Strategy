@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Building
+namespace Assets.Scripts.Building.Item
 {
     [CreateAssetMenu(fileName = "Gold", menuName = "Item/Gold")]
     public class Gold : ItemConfiguration

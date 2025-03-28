@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Building
+namespace Assets.Scripts.Building.Item
 {
     public abstract class ItemConfiguration : ScriptableObject
     {

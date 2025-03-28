@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Building
+namespace Assets.Scripts.Building.Item
 {
     public class ItemType
     {
