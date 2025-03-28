@@ -13,11 +13,18 @@ namespace Assets.Scripts.Service
         [SerializeField] private ResourceHUD parenTransform;
 
         private Dictionary<string, ItemUI> UIItems = new();
+        private IDataNotifier dataService;
         public void Initialize(IDataNotifier dataService, IEnumerable<ItemConfiguration> items)
         {
             CreateUIItem(items);
-            dataService.IsItemChanged += Refresh;
+            this.dataService = dataService;
+            this.dataService.IsItemChanged += Refresh;
             openButton.onClick.AddListener(OpenResourceHUD);
+        }
+
+        private void OnDisable()
+        {
+            dataService.IsItemChanged -= Refresh;
         }
 
         private void CreateUIItem(IEnumerable<ItemConfiguration> items)

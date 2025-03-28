@@ -24,6 +24,12 @@ namespace Assets.Scripts.Service
             inputScheme.Player.Click.performed += PlayerMove;
             inputScheme.Camera.Move.performed += CameraMove;
         }
+
+        private void OnDisable()
+        {
+            inputScheme.Player.Click.performed -= PlayerMove;
+            inputScheme.Camera.Move.performed -= CameraMove;
+        }
         private void PlayerMove(InputAction.CallbackContext obj)
         {
             var positionClick = inputScheme.Player.PositionMouse.ReadValue<Vector2>();

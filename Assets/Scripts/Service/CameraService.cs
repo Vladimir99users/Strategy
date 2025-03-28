@@ -8,10 +8,17 @@ namespace Assets.Scripts.Service
         [SerializeField] private Camera camera;
 
         private Vector2 direction;
+        private ICameraController controller;
         public void Initialize(ICameraController controller)
         {
-            controller.OnCameraMoved += GetDirection;
+            this.controller = controller;
+            this.controller.OnCameraMoved += GetDirection;
             camera = Camera.main;
+        }
+
+        private void OnDisable()
+        {
+            controller.OnCameraMoved -= GetDirection;
         }
 
         private void GetDirection(Vector2 direction)

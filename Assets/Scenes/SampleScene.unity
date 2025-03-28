@@ -2625,7 +2625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27e646bbfd5d8143a4e64db2ccd2c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepCamera: 15
+  stepCamera: 150
   camera: {fileID: 0}
 --- !u!1 &1698489852
 GameObject:

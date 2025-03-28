@@ -11,13 +11,20 @@ namespace Assets.Scripts.Building
 
         private int timeStep = 0;
         private Item.Item item;
+        private ISecondElapsedNotifier secondElapsedNotifier;
         public void Initialize(ISecondElapsedNotifier secondElapsedNotifier)
         {
             productionBuildUi.Initialize(_itemConfiguration.TimeToGeneration, _itemConfiguration.Sprite, _itemConfiguration.Item.Type);
-            secondElapsedNotifier.OnSecondEnd += GenerateItem;
+            this.secondElapsedNotifier = secondElapsedNotifier;
+            this.secondElapsedNotifier.OnSecondEnd += GenerateItem;
             item = new Item.Item();
             item.Type = _itemConfiguration.Item.Type;
             item.Amount = _itemConfiguration.Item.Amount;
+        }
+
+        private void OnDisable()
+        {
+            secondElapsedNotifier.OnSecondEnd -= GenerateItem;
         }
 
         private void GenerateItem()
