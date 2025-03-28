@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Barrel
   m_EditorClassIdentifier: 
   TimeToGeneration: 8
-  ItemInformation:
+  Item:
     Type: Barrel
     Amount: 0
   Sprite: {fileID: 21300000, guid: 7b511e2eae6a6fd4d945e79394bc76c2, type: 3}

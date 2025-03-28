@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: 
   TimeToGeneration: 2
-  ItemInformation:
+  Item:
     Type: Banana
     Amount: 0
   Sprite: {fileID: 21300000, guid: 36467222149a0df4d985035dc9080ee1, type: 3}

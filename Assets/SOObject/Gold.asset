@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold
   m_EditorClassIdentifier: 
   TimeToGeneration: 10
-  ItemInformation:
+  Item:
     Type: Gold
     Amount: 0
   Sprite: {fileID: 21300000, guid: 85390185c5a1b744c9d5588109fe4326, type: 3}
